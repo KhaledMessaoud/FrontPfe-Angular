@@ -1,0 +1,73 @@
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a href="" [routerLink]="['/home']" class="navbar-brand d-flex align-items-center px-4 px-lg-9">
+        <h2 class="m-0 text-primary"><img width="150" height="75" src="assets/img/ira.png">Institut des Régions Arides</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="" class="nav-item nav-link" [routerLink]="['/home']">Home</a>
+            <a href="" class="nav-item nav-link" [routerLink]="['/listauthor']">Author</a>
+            <a href="" class="nav-item nav-link" [routerLink]="['/listreviewer']">Reviewers</a>
+            <a href="" class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
+        </div>
+        <button class="btn btn-danger " type="submit" (click)="deconnecter()" >Logout<i class="fa fa-arrow-right ms-3"></i></button>
+    </div>
+  </nav>
+  <br>
+
+  <div class="row" style="margin-top:5px;">
+    <div class="col-3">
+        <div class="list-group">
+            <a href="/listauthor" class="list-group-item list-group-item-action" >
+                <span class="badge badge-pill badge-light" ></span>
+                Manuscripts with decisions
+                <i class="fa fa-chevron-right" ></i>
+            </a>
+            <a href="/startsub" class="list-group-item list-group-item-action">
+                <span class="badge badge-pill badge-light"></span>
+                Start new submission
+                <i class="fa fa-chevron-right" ></i>
+            </a>
+            <a  href="/recuauthor" class="list-group-item list-group-item-action">
+                <span class="badge badge-pill badge-light"></span>
+                Most recent E-mails
+                <i class="fa fa-chevron-right" ></i>
+            </a>
+            <a (click)="getMessageEnvoyes()"  class="list-group-item list-group-item-action">
+                <span class="badge badge-pill badge-light"></span>
+                E-mails sent
+                <i class="fa fa-chevron-right" ></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-9">
+        <div class="col">
+            <div class="card text-white">
+                <div class="card-header bg-dark"> E-mail Sent</div>
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Subject</th>
+                            <th>Contain</th>
+                            <th>To</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of mails">
+                            <td>{{m.sujet}}</td>
+                            <td>{{m.contenu}}</td>
+                            <td>{{m.user_receive.nom}}</td>
+                            <td><button>Open</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <td><button [routerLink]="['/sendmail']">Send E-mail</button></td>
+            </div>
+        </div>
+    </div>
